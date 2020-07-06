@@ -9,7 +9,7 @@ const merge = require('webpack-merge')
 const webpackConfig = merge(commonConfig, {
     mode: 'production',
     entry: {
-        vendor: ['bignumber.js', 'vue', 'vue-router', 'vuex', 'web3']
+        vendor: ['bignumber.js', 'vue', 'vue-router', 'vuex']
     },
     output: {
         path: path.resolve(__dirname, '../build'),
@@ -68,8 +68,7 @@ const webpackConfig = merge(commonConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index-prod.html',
-            inject: true,
-            chunksSortMode: 'dependency'
+            inject: true
         })
     ]
 })

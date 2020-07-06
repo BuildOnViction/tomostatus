@@ -1,16 +1,22 @@
 const express = require('express')
 const config = require('config')
 const bodyParser = require('body-parser')
-const path = require('path')
 const yaml = require('js-yaml')
+const path = require('path')
 const fs = require('fs')
 const swaggerUi = require('swagger-ui-express')
 const morgan = require('morgan')
 const logger = require('./helpers/logger')
 const helmet = require('helmet')
+const cors = require('cors')
 
 // body parse
 const app = express()
+
+// cors
+app.use(cors({
+    origin: config.get('cors')
+}))
 
 // helmet
 app.use(helmet())
@@ -28,6 +34,17 @@ app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(docs))
 
 // apis
 app.use(require('./apis'))
+
+let p
+if (process.env.NODE_ENV === 'development') {
+    p = path.resolve(__dirname, 'index.html')
+} else {
+    p = path.resolve(__dirname, './build', 'index.html')
+}
+
+app.get('*', function (req, res) {
+    return res.sendFile(p)
+})
 
 // error handler
 app.use(require('./middlewares/error'))

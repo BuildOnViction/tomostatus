@@ -5,5 +5,8 @@
     },
     "logs": {
         "level": "debug"
-    }
+    },
+    "cors": [
+        "https://swagger.tomochain.com"
+    ]
 }

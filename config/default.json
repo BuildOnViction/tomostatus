@@ -6,6 +6,9 @@
     "logs": {
         "level": "debug"
     },
+    "grafana": {
+        "apiKey": ""
+    },
     "cors": [
         "https://swagger.tomochain.com"
     ]

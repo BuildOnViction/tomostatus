@@ -9,7 +9,7 @@ const merge = require('webpack-merge')
 const webpackConfig = merge(commonConfig, {
     mode: 'production',
     entry: {
-        vendor: ['bignumber.js', 'vue', 'vue-router', 'vuex', 'web3']
+        vendor: ['bignumber.js', 'vue', 'vue-router', 'vuex']
     },
     output: {
         path: path.resolve(__dirname, '../build'),

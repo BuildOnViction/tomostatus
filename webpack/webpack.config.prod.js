@@ -68,8 +68,7 @@ const webpackConfig = merge(commonConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index-prod.html',
-            inject: true,
-            chunksSortMode: 'dependency'
+            inject: true
         })
     ]
 })

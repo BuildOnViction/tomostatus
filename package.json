@@ -38,6 +38,7 @@
     "swagger-ui-express": "^4.1.4",
     "tomoxjs": "^0.5.7",
     "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-join": "^4.0.1",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.3",
     "vue-router": "^3.3.4",

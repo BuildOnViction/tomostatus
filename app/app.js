@@ -7,6 +7,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuex from 'vuex'
 import Toasted from 'vue-toasted'
 
+import Test from './Test.vue'
+
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -30,7 +32,8 @@ Vue.prototype.$bus = EventBus
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', component: App }
+        { path: '/', component: App },
+        { path: '/test', component: Test }
     ]
 })
 

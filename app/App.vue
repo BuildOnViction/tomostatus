@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         Let's start
+        <router-view />
     </div>
 </template>
 
@@ -8,7 +9,9 @@
 export default {
     name: 'App',
     components: { },
-    data () { },
+    data () {
+        return {}
+    },
     computed: { },
     async updated () { },
     destroyed () { },

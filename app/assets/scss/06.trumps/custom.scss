@@ -12,3 +12,88 @@
     font-size: 16px;
   }
 }
+
+.text-blue {
+  color: #00E8B4;
+}
+
+.tm-btn-link {
+  padding: 16px 50px;
+  min-width: 200px;
+  display: inline-block;
+  background-color: #00E8B4;
+  color: #242828!important;
+  text-decoration: none!important;
+  &:hover {
+    transition: all .3s;
+    background-color: #0cc59d;
+  }
+}
+
+.tm-font-size-6 {
+  font-size: 60px;
+}
+
+img {
+  max-width: 100%;
+}
+
+//header
+.header-page {
+  background-color: #242828;
+}
+
+//
+
+
+.tm-calendar {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-left: -2px;
+    margin-right: -2px;
+    li {
+      background-color: #00E8B4;
+      width: calc(100%/90);
+      height: 50px;
+      margin: 0 2px;
+      &.stop {
+        background-color: #E02020;
+      }
+      &.pending {
+        background-color: #F7B500;
+      }
+      &.normal {
+        background-color: #00E8B4;
+      }
+    }
+  }
+}
+.tm-item-box {
+  .stop {
+    color: #E02020;
+  }
+  .pending {
+    color: #F7B500;
+  }
+  .normal {
+    color: #00E8B4;
+  }
+}
+
+.tm-item-box {
+  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.05);
+  border: solid 1px #f6f6f8;
+  background-color: #ffffff;
+  padding: 15px 30px;
+}
+
+//
+.tm-twtter-box {
+  max-width: 660px;
+  margin: auto;
+}

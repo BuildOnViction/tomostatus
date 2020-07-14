@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import BootstrapVue from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuex from 'vuex'
 import Toasted from 'vue-toasted'
 
 import Test from './Test.vue'
+import Home from './Home.vue'
 
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Toasted, {
@@ -32,7 +34,7 @@ Vue.prototype.$bus = EventBus
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', component: App },
+        { path: '/', component: Home },
         { path: '/test', component: Test }
     ]
 })

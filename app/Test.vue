@@ -1,17 +1,17 @@
 <template>
     <div>
-        <Timeline
-            id="twitterdev"
-            source-type="profile"
-            widget-class="mt-3 my-custom-class"/>
+        <b-spinner
+            small
+            label="Small Spinner"
+        />
     </div>
 </template>
 
 <script>
-import { Timeline } from 'vue-tweet-embed'
+
 export default {
     name: 'App',
-    components: { Timeline },
+    components: { },
     data () {
         return {}
     },

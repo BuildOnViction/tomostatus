@@ -24,6 +24,13 @@
             <div class="row">
                 <div class="col-6">
                     Tomo Operations
+
+                    <b-icon
+                        v-b-tooltip.hover
+                        icon="question-circle"
+                        font-scale="1"
+                        title="Web requets for Tomochain.com UI & service"
+                    />
                 </div>
                 <div class="col-6 text-md-right normal">
                     Normal
@@ -34,7 +41,26 @@
                     <li
                         v-for="(item, index) in 90"
                         :key="index"
-                    />
+                    >
+                        <div class="inner-calendar">
+                            <div class="cal-detail">
+                                <div class="tm-date py-2">
+                                    21 Jul 2020
+                                </div>
+                                <div class="row bg-gray py-2">
+                                    <div class="col-6">
+                                        Degradation
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        1 mins
+                                    </div>
+                                </div>
+                                <div class="tm-txt py-2">
+                                    No incidents or maintenance related to this downtime.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="row text-black-50">

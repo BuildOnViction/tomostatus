@@ -83,7 +83,7 @@
             </div>
             <div class="tm-banner my-5 pt-3">
                 <div class="container">
-                    <div class="row flex-row-reverse">
+                    <div class="row align-items-center flex-row-reverse">
                         <div class="col-md-6">
                             <b-img
                                 src="/app/assets/images/banner.png"

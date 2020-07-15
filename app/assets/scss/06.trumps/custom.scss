@@ -105,6 +105,7 @@ img {
           position: relative;
           background: #ffffff;
           border: 1px solid #f0f1f5;
+          color: #242828;
           &:before,
           &:after {
             bottom: 100%;
@@ -137,7 +138,7 @@ img {
           height: 100%;
           width: 100%;
           background-color: #000000;
-          opacity: .5;
+          opacity: .3;
           position: absolute;
           top: 0;
           left: 0;

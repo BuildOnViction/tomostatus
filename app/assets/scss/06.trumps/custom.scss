@@ -28,10 +28,20 @@
     transition: all .3s;
     background-color: #0cc59d;
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .tm-font-size-6 {
   font-size: 60px;
+  @media screen and (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 34px;
+    text-align: center;
+  }
 }
 
 img {
@@ -156,6 +166,9 @@ img {
   border: solid 1px #f6f6f8;
   background-color: #ffffff;
   padding: 15px 30px;
+  @media screen and (max-width: 767px) {
+    padding: 15px;
+  }
 }
 
 //

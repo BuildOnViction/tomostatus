@@ -22,7 +22,7 @@
             class="tm-item-box my-3"
         >
             <div class="row">
-                <div class="col-6">
+                <div class="col-8">
                     Tomo Operations
 
                     <b-icon
@@ -32,7 +32,7 @@
                         title="Web requets for Tomochain.com UI & service"
                     />
                 </div>
-                <div class="col-6 text-md-right normal">
+                <div class="col-4 text-right normal">
                     Normal
                 </div>
             </div>
@@ -64,10 +64,10 @@
                 </ul>
             </div>
             <div class="row text-black-50">
-                <div class="col-6">
+                <div class="col-8">
                     90 days ago
                 </div>
-                <div class="col-6 text-md-right">
+                <div class="col-4 text-right">
                     Today
                 </div>
             </div>

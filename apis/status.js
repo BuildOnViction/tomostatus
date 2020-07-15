@@ -12,15 +12,15 @@ router.get('/', async function (req, res, next) {
     try {
         const q = {
             q: `
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'RPC' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'DAPP' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODEX' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOSCAN' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOBRIDGE' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOWALLET' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOCHAIN' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOMASTER' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODOCS' AND "status" = 'failed') AND time >= now() - 90d GROUP BY time(1d) fill(0)
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'RPC' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'DAPP' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODEX' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOSCAN' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOBRIDGE' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOWALLET' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOCHAIN' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOMASTER' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODOCS' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0)
             `,
             db: 'product',
             epoch: 'ms'

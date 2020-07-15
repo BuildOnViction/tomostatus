@@ -17,13 +17,13 @@
             </div>
         </div>
         <div
-            v-for="(item, index) in 3"
-            :key="index"
+            v-for="(productName, rowIndex) in products"
+            :key="rowIndex"
             class="tm-item-box my-3"
         >
             <div class="row">
                 <div class="col-6">
-                    Tomo Operations
+                    {{ productName }}
                 </div>
                 <div class="col-6 text-md-right normal">
                     Normal
@@ -53,6 +53,7 @@
                     id="TomoChainANN"
                     source-type="profile"
                     widget-class="mt-3 my-custom-class"
+                    :options="{ tweetLimit: '3' }"
                 />
             </div>
         </div>
@@ -60,6 +61,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import moment from 'moment'
 import { Timeline } from 'vue-tweet-embed'
 export default {
     name: 'App',
@@ -67,14 +70,47 @@ export default {
         Timeline
     },
     data () {
-        return {}
+        return {
+            products: [
+                'RPC',
+                'DAPP',
+                'TOMODEX',
+                'TOMOSCAN',
+                'TOMOBRIDGE',
+                'TOMOWALLET',
+                'TOMOCHAIN',
+                'TOMOMASTER',
+                'TOMODOCS'
+            ],
+            days: []
+        }
     },
     computed: { },
     async updated () { },
     destroyed () { },
     created: async function () {
-        console.log(111)
+        await this.getData()
     },
-    methods: { }
+    methods: {
+        async getData () {
+            try {
+                const { data } = await axios.get('/api/status')
+                await Promise.all(data.results.map((d, index) => {
+                    this.days[index] = {
+                        productId: d.statement_id,
+                        items: d.series[0].values.map(v => {
+                            return [
+                                moment(v[0]).format('DD MMMM YYYY'),
+                                v[1]
+                            ]
+                        })
+                    }
+                }))
+            } catch (error) {
+                console.log(error)
+                this.$toasted.show(error, { type: 'error' })
+            }
+        }
+    }
 }
 </script>

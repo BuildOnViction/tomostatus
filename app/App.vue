@@ -35,12 +35,12 @@
                                     Help
                                 </b-nav-item>
                                 <b-nav-item
-                                    href="#"
+                                    href="https://forum.tomochain.com/"
                                 >
                                     Community
                                 </b-nav-item>
                                 <b-nav-item
-                                    href="#"
+                                    href="/"
                                 >
                                     Status
                                 </b-nav-item>
@@ -50,7 +50,7 @@
                             <b-navbar-nav class="ml-auto">
                                 <b-navbar-brand
                                     class="d-none d-lg-block text-center"
-                                    href="#"
+                                    href="/"
                                 >
                                     <b-img
                                         src="/app/assets/images/logo-tomostatus.svg"
@@ -62,11 +62,11 @@
                             <!-- Right nav items -->
                             <b-navbar-nav class="ml-auto">
                                 <b-navbar-nav>
-                                    <b-nav-item href="#">
+                                    <b-nav-item href="https://tomochain.com/">
                                         Tomochain.com
                                     </b-nav-item>
                                     <b-nav-item
-                                        href="#"
+                                        href="https://twitter.com/TomoChainANN"
                                     >
                                         Twitter
                                     </b-nav-item>
@@ -119,7 +119,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="text-center py-3">
-                            TomoStatus © 2020 - v1.1.1
+                            TomoStatus © 2020 - v{{ version }}
                         </div>
                     </div>
                 </div>
@@ -129,13 +129,15 @@
 </template>
 
 <script>
-
+import pkg from '../package.json'
 export default {
     name: 'App',
     components: {
     },
     data () {
-        return {}
+        return {
+            version: pkg.version
+        }
     },
     computed: { },
     async updated () { },

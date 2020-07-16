@@ -131,12 +131,12 @@ export default {
                     items[index] = {
                         productId: d.statement_id,
                         items: d.series[0].values.map(v => {
-                            let color = 'normal'
-                            if (v[1] > 1) {
-                                color = 'stop'
+                            let color = 'normal' // no error
+                            if (v[1] >= 48) {
+                                color = 'stop' // > 12 hours
                             }
-                            if (v[1] === 1) {
-                                color = 'pending'
+                            if (v[1] >= 1) {
+                                color = 'pending' // 0 - 12 hours
                             }
                             return [
                                 moment(v[0]).format('DD MMMM YYYY'),

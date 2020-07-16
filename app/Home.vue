@@ -33,7 +33,7 @@
                             title="Web requets for Tomochain.com UI & service"
                         />
                     </div>
-                    <div :class="`col-4 text-right ${today[rowIndex].color}`">
+                    <div :class="`col-4 text-right ${today[rowIndex].color || ''}`">
                         {{ today[rowIndex].status }}
                     </div>
                 </div>
@@ -127,8 +127,8 @@ export default {
     async updated () { },
     destroyed () { },
     created: async function () {
-        await this.getData()
         await this.getTodayData()
+        await this.getData()
     },
     methods: {
         async getData () {
@@ -172,8 +172,8 @@ export default {
                     }
                     if (d.series && d.series.length > 0) {
                         d.series[0].values.map(v => {
+                            let color = 'normal' // no error
                             if (new Date(v[0]).getDate() === new Date().getDate()) {
-                                let color = 'normal' // no error
                                 let status = 'Normal'
                                 if (v[1] >= 48) {
                                     color = 'stop' // > 12 hours

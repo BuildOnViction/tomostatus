@@ -97,7 +97,7 @@
                                 <span class="text-blue">Status</span> Overall
                             </h2>
                             <a
-                                class="tm-btn-link mt-3"
+                                :class="`tm-btn-link mt-3 ${currentStatus}`"
                             >
                                 <span class="d-flex align-content">
                                     <b-icon
@@ -142,21 +142,23 @@ export default {
     computed: { },
     async updated () { },
     destroyed () { },
-    created: async function () { },
+    created: async function () {
+        await this.get30minutesData()
+    },
     methods: {
         async get30minutesData () {
             try {
                 const { data } = await axios.get('/api/status/currentStatus')
-                let status = 'Normal'
+                let status = 'normal'
                 await Promise.all(data.results.map((d, index) => {
                     if (d.series && d.series.length > 0) {
                         d.series[0].values.map(v => {
                             if (new Date(v[0]).getDate() === new Date().getDate()) {
                                 if (v[1] >= 48) {
-                                    status = 'Bad' // > 12 hours
+                                    status = 'stop' // > 12 hours
                                 }
                                 if (v[1] >= 1) {
-                                    status = 'Not Good' // 0 - 12 hours
+                                    status = 'spending' // 0 - 12 hours
                                 }
                             }
                         })

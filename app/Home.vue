@@ -50,16 +50,23 @@
                                     <div class="tm-date py-2">
                                         {{ item[0] }}
                                     </div>
-                                    <div class="row bg-gray py-2">
-                                        <div class="col-6">
-                                            Degradation
+                                    <div v-if="item[1] > 0">
+                                        <div class="row bg-gray py-2">
+                                            <div class="col-6">
+                                                Degradation
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                {{ item[1] }}
+                                            </div>
                                         </div>
-                                        <div class="col-6 text-right">
-                                            {{ item[1] }}
+                                        <div class="tm-txt py-2">
+                                            No incidents or maintenance related to this downtime.
                                         </div>
                                     </div>
-                                    <div class="tm-txt py-2">
-                                        No incidents or maintenance related to this downtime.
+                                    <div v-else>
+                                        <div class="tm-txt py-2">
+                                            No downtime recorded on this day.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -170,11 +177,11 @@ export default {
                                 let status = 'Normal'
                                 if (v[1] >= 48) {
                                     color = 'stop' // > 12 hours
-                                    status = 'Bad'
+                                    status = 'Incident'
                                 }
                                 if (v[1] >= 1) {
                                     color = 'pending' // 0 - 12 hours
-                                    status = 'Not Good'
+                                    status = 'Degraded'
                                 }
                                 items[index].color = color
                                 items[index].status = status

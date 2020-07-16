@@ -97,8 +97,6 @@
                                 <span class="text-blue">Status</span> Overall
                             </h2>
                             <a
-                                href="#"
-                                target="_blank"
                                 class="tm-btn-link mt-3"
                             >
                                 <span class="d-flex align-content">
@@ -129,6 +127,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import pkg from '../package.json'
 export default {
     name: 'App',
@@ -136,13 +135,39 @@ export default {
     },
     data () {
         return {
-            version: pkg.version
+            version: pkg.version,
+            currentStatus: ''
         }
     },
     computed: { },
     async updated () { },
     destroyed () { },
     created: async function () { },
-    methods: { }
+    methods: {
+        async get30minutesData () {
+            try {
+                const { data } = await axios.get('/api/status/currentStatus')
+                let status = 'Normal'
+                await Promise.all(data.results.map((d, index) => {
+                    if (d.series && d.series.length > 0) {
+                        d.series[0].values.map(v => {
+                            if (new Date(v[0]).getDate() === new Date().getDate()) {
+                                if (v[1] >= 48) {
+                                    status = 'Bad' // > 12 hours
+                                }
+                                if (v[1] >= 1) {
+                                    status = 'Not Good' // 0 - 12 hours
+                                }
+                            }
+                        })
+                    }
+                }))
+                this.currentStatus = status
+            } catch (error) {
+                console.log(error)
+                this.$toasted.show(error, { type: 'error' })
+            }
+        }
+    }
 }
 </script>

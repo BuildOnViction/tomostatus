@@ -7,7 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuex from 'vuex'
 import Toasted from 'vue-toasted'
 
-import Test from './Test.vue'
+import Historical from './Historical.vue'
 import Home from './Home.vue'
 
 Vue.use(BootstrapVue)
@@ -35,7 +35,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/', component: Home },
-        { path: '/test', component: Test }
+        { path: '/historical', component: Historical }
     ]
 })
 

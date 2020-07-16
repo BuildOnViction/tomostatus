@@ -24,9 +24,14 @@
   background-color: #00E8B4;
   color: #242828!important;
   text-decoration: none!important;
-  &:hover {
-    transition: all .3s;
-    background-color: #0cc59d;
+  &.stop {
+    background-color: #E02020;
+  }
+  &.pending {
+    background-color: #F7B500;
+  }
+  &.normal {
+    background-color: #00E8B4;
   }
   @media screen and (max-width: 767px) {
     width: 100%;

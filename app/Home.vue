@@ -33,8 +33,8 @@
                             title="Web requets for Tomochain.com UI & service"
                         />
                     </div>
-                    <div class="col-4 text-right normal">
-                        Normal
+                    <div :class="`col-4 text-right ${today[rowIndex].color}`">
+                        {{ today[rowIndex].status }}
                     </div>
                 </div>
                 <div class="tm-calendar my-3">
@@ -121,6 +121,7 @@ export default {
     destroyed () { },
     created: async function () {
         await this.getData()
+        await this.getTodayData()
     },
     methods: {
         async getData () {
@@ -147,6 +148,44 @@ export default {
                     }
                 }))
                 this.days = items
+            } catch (error) {
+                console.log(error)
+                this.$toasted.show(error, { type: 'error' })
+            }
+        },
+        async getTodayData () {
+            try {
+                const { data } = await axios.get('/api/status/today')
+                const items = []
+                await Promise.all(data.results.map((d, index) => {
+                    items[index] = {
+                        productId: d.statement_id,
+                        status: '',
+                        color: ''
+                    }
+                    if (d.series && d.series.length > 0) {
+                        d.series[0].values.map(v => {
+                            if (new Date(v[0]).getDate() === new Date().getDate()) {
+                                let color = 'normal' // no error
+                                let status = 'Normal'
+                                if (v[1] >= 48) {
+                                    color = 'stop' // > 12 hours
+                                    status = 'Bad'
+                                }
+                                if (v[1] >= 1) {
+                                    color = 'pending' // 0 - 12 hours
+                                    status = 'Not Good'
+                                }
+                                items[index].color = color
+                                items[index].status = status
+                            }
+                        })
+                    } else {
+                        items[index].status = 'Normal'
+                        items[index].color = 'normal'
+                    }
+                }))
+                this.today = items
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })

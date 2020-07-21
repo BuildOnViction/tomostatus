@@ -155,6 +155,7 @@ export default {
                     }
                 }))
                 this.days = items
+                console.log(items)
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })
@@ -165,6 +166,7 @@ export default {
                 const { data } = await axios.get('/api/status/today')
                 const items = []
                 await Promise.all(data.results.map((d, index) => {
+                    console.log(d)
                     items[index] = {
                         productId: d.statement_id,
                         status: '',

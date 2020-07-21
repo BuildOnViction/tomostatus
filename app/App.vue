@@ -143,10 +143,10 @@ export default {
     async updated () { },
     destroyed () { },
     created: async function () {
-        await this.get30minutesData()
+        await this.getCurrentStatus()
     },
     methods: {
-        async get30minutesData () {
+        async getCurrentStatus () {
             try {
                 const { data } = await axios.get('/api/status/currentStatus')
                 let status = 'normal'

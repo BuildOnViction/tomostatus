@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h1 class="s-heading">Historical Uptime</h1>
+        <h1 class="s-heading">
+            Historical Uptime
+        </h1>
         <div class="cal-s-header">
             <div class="show-sys-list">
                 <button
@@ -12,7 +14,7 @@
                     >
                         {{ selected }}
                     </span>
-                    <span class="caret"></span>
+                    <span class="caret" />
                 </button>
                 <ul v-if="showDropdown === true">
                     <li
@@ -28,10 +30,10 @@
             </div>
             <div class="cal-f-month">
                 <span
-                    @click="getDataPrevMonth"
                     class="prev-month"
+                    @click="getDataPrevMonth"
                 >
-                    <b-icon icon="arrow-left-short"></b-icon>
+                    <b-icon icon="arrow-left-short" />
                 </span>
                 <div class="current-month">
                     <span>
@@ -39,11 +41,10 @@
                     </span>
                 </div>
                 <span
-                    v-if=""
-                    @click="getDataNextMonth"
                     class="next-month"
+                    @click="getDataNextMonth"
                 >
-                    <b-icon icon="arrow-right-short"></b-icon>
+                    <b-icon icon="arrow-right-short" />
                 </span>
             </div>
         </div>
@@ -71,7 +72,7 @@
                             v-for="n in value.offsetDay"
                             :key="'not'+ n"
                             class="day not-in-month"
-                        ></li>
+                        />
                     </template>
                     <li
                         v-for="(day, d_index) in value.days"
@@ -128,7 +129,10 @@
             No Data
         </p>
         <div class="current-status">
-            <router-link to="/"><b-icon icon="arrow-left-short"></b-icon>Current Status</router-link>
+            <router-link to="/">
+                <b-icon icon="arrow-left-short" />
+                Current Status
+            </router-link>
         </div>
         <div class="mt-5">
             <h2>TomoChain Social Media Feeds</h2>
@@ -192,7 +196,6 @@ export default {
         thisMonth () {
             let prevMonth
             let prevYear
-            let result
             if (this.Month === 2) {
                 prevMonth = this.months[11]
                 prevYear = this.Year - 1
@@ -203,9 +206,7 @@ export default {
                 prevMonth = this.months[this.Month - 3]
                 prevYear = this.Year
             }
-            result = prevMonth + ' ' + prevYear + ' to ' + this.months[this.Month - 1] + ' ' + this.Year
-
-            return result
+            return prevMonth + ' ' + prevYear + ' to ' + this.months[this.Month - 1] + ' ' + this.Year
         },
         dataNextMonth () {
             // console.log(this.Month)

@@ -209,7 +209,6 @@ export default {
             return prevMonth + ' ' + prevYear + ' to ' + this.months[this.Month - 1] + ' ' + this.Year
         },
         dataNextMonth () {
-            // console.log(this.Month)
             if (this.Month === 10) {
                 return {
                     month: 1,
@@ -273,9 +272,6 @@ export default {
                 const { data } = await axios.get(`/api/status/historical?${query}`)
                 const items = []
                 await Promise.all(data.results.map(async (d, index) => {
-                    // items[index] = {
-                    //     productId: d.statement_id
-                    // }
                     const month1 = {
                         days: []
                     } // 7 - 3
@@ -357,7 +353,6 @@ export default {
                                 })
                             }
                         }))
-                        // items[index] = []
                         items.push(month1)
                         items.push(month2)
                         items.push(month3)
@@ -383,15 +378,8 @@ export default {
         getDropdown () {
             this.showDropdown = !this.showDropdown
         },
-        // getShowMonth () {
-        //     const { attr } = this.thisMonth
-        //     console.log(attr)
-        //     this.fromMonths = attr
-        // },
         async getDataNextMonth () {
             const { month, year } = this.dataNextMonth
-            // console.log(month)
-            // console.log(year)
             this.Month = month
             this.Year = year
             await this.getData()

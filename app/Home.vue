@@ -25,12 +25,12 @@
                     <div class="col-8">
                         {{ productName }}
 
-                        <b-icon
+                        <!-- <b-icon
                             v-b-tooltip.hover
                             icon="question-circle"
                             font-scale="1"
                             title="Web requets for Tomochain.com UI & service"
-                        />
+                        /> -->
                     </div>
                     <div :class="`col-4 text-right ${today[rowIndex].color || ''}`">
                         {{ today[rowIndex].status }}
@@ -86,7 +86,7 @@
             <h2>TomoChain Social Media Feeds</h2>
             <div class="tm-twtter-box">
                 <Timeline
-                    id="TomoChainANN"
+                    id="TomoChainStatus"
                     source-type="profile"
                     widget-class="mt-3 my-custom-class"
                     :options="{ tweetLimit: '3' }"
@@ -154,7 +154,6 @@ export default {
                     }
                 }))
                 this.days = items
-                console.log(items)
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })

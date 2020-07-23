@@ -138,7 +138,7 @@
             <h2>TomoChain Social Media Feeds</h2>
             <div class="tm-twtter-box">
                 <Timeline
-                    id="TomoChainANN"
+                    id="TomoChainStatus"
                     source-type="profile"
                     widget-class="mt-3 my-custom-class"
                     :options="{ tweetLimit: '3' }"

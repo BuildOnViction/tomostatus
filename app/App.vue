@@ -30,7 +30,7 @@
                             <!-- Left nav items -->
                             <b-navbar-nav>
                                 <b-nav-item
-                                    href="#"
+                                    href="/"
                                 >
                                     Help
                                 </b-nav-item>
@@ -63,7 +63,7 @@
                             <b-navbar-nav class="ml-auto">
                                 <b-navbar-nav>
                                     <b-nav-item href="https://tomochain.com/">
-                                        Tomochain.com
+                                        TomoChain.com
                                     </b-nav-item>
                                     <b-nav-item
                                         href="https://twitter.com/TomoChainANN"
@@ -71,7 +71,7 @@
                                         Twitter
                                     </b-nav-item>
                                     <b-nav-item
-                                        href="#"
+                                        href="/"
                                     >
                                         Subscribe
                                     </b-nav-item>
@@ -100,10 +100,23 @@
                                 :class="`tm-btn-link mt-3 ${currentStatus}`"
                             >
                                 <span class="d-flex align-content">
-                                    <b-icon
-                                        icon="check"
-                                        font-scale="1.5"
-                                    />All Systems Operational
+                                    <div
+                                        v-if="!currentLabel"
+                                    >
+                                        <b-icon
+                                            icon="check"
+                                            font-scale="1.5"
+                                        />All Systems Operational
+                                    </div>
+                                    <div
+                                        v-else
+                                    >
+                                        <b-icon
+                                            icon="cone-striped"
+                                            font-scale="1.5"
+                                        />
+                                        {{ currentLabel }}
+                                    </div>
                                 </span>
                             </a>
                         </div>
@@ -136,7 +149,19 @@ export default {
     data () {
         return {
             version: pkg.version,
-            currentStatus: ''
+            currentStatus: '',
+            currentLabel: '',
+            products: [
+                'RPC',
+                'DAPP',
+                'TOMODEX',
+                'TOMOSCAN',
+                'TOMOBRIDGE',
+                'TOMOWALLET',
+                'TOMOCHAIN',
+                'TOMOMASTER',
+                'TOMODOCS'
+            ]
         }
     },
     computed: { },
@@ -150,21 +175,27 @@ export default {
             try {
                 const { data } = await axios.get('/api/status/currentStatus')
                 let status = 'normal'
+                let label = ''
                 await Promise.all(data.results.map((d, index) => {
                     if (d.series && d.series.length > 0) {
                         d.series[0].values.map(v => {
                             if (new Date(v[0]).getDate() === new Date().getDate()) {
                                 if (v[1] >= 48) {
                                     status = 'stop' // > 12 hours
+                                    label = `${this.products[d.statement_id]} is Incident`
                                 }
                                 if (v[1] >= 1) {
-                                    status = 'spending' // 0 - 12 hours
+                                    status = 'pending' // 0 - 12 hours
+                                    if (!label) {
+                                        label = `${this.products[d.statement_id]} is Degraded`
+                                    }
                                 }
                             }
                         })
                     }
                 }))
                 this.currentStatus = status
+                this.currentLabel = label
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })

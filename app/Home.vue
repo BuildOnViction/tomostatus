@@ -8,8 +8,7 @@
                 <div class="col-md-6">
                     <p class="text-md-right">
                         Uptime over the past 90 days. <a
-                            href="#"
-                            target="_blank"
+                            href="/historical"
                             rel="noopener noreferrer"
                         >View historical uptime</a>.
                     </p>
@@ -127,7 +126,7 @@ export default {
     async updated () { },
     destroyed () { },
     created: async function () {
-        await this.getTodayData()
+        await this.getCurrentStatus()
         await this.getData()
     },
     methods: {
@@ -156,6 +155,44 @@ export default {
                 }))
                 this.days = items
                 console.log(items)
+            } catch (error) {
+                console.log(error)
+                this.$toasted.show(error, { type: 'error' })
+            }
+        },
+        async getCurrentStatus () {
+            try {
+                const { data } = await axios.get('/api/status/currentStatus')
+                const items = []
+                await Promise.all(data.results.map((d, index) => {
+                    items[index] = {
+                        productId: d.statement_id,
+                        status: '',
+                        color: ''
+                    }
+                    if (d.series && d.series.length > 0) {
+                        d.series[0].values.map(v => {
+                            let color = 'normal' // no error
+                            if (new Date(v[0]).getDate() === new Date().getDate()) {
+                                let status = 'Normal'
+                                if (v[1] >= 48) {
+                                    color = 'stop' // > 12 hours
+                                    status = 'Incident'
+                                }
+                                if (v[1] >= 1) {
+                                    color = 'pending' // 0 - 12 hours
+                                    status = 'Degraded'
+                                }
+                                items[index].color = color
+                                items[index].status = status
+                            }
+                        })
+                    } else {
+                        items[index].status = 'Normal'
+                        items[index].color = 'normal'
+                    }
+                }))
+                this.today = items
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })

@@ -8,7 +8,6 @@
     "start": "node index.js",
     "nodemon": "./node_modules/.bin/nodemon index.js",
     "dev": "npm run nodemon & cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --port 3000",
-    "dev-https": "npm run nodemon & cross-env NODE_ENV=development webpack-dev-server --https --key ./sslcert/server.key --cert ./sslcert/server.crt --hot --host 0.0.0.0 --port 3000",
     "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules"
   },
   "directories": {

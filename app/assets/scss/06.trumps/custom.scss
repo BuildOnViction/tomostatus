@@ -231,7 +231,7 @@ img {
   }
   ul{
     position: absolute;
-    width: 260px;
+    width: 300px;
     list-style: none;
     padding: 0;
     background-color: #fff;
@@ -240,8 +240,8 @@ img {
     li{
       padding: 5px 10px;
       cursor: pointer;
-      &.active{
-        background-color: #8ED4AB;
+      &.active,&:hover{
+        background-color: #00E8B4;
         color: #fff;
       }
     }
@@ -294,7 +294,7 @@ img {
     background-color:#F7B500;
   }
   .normal{
-    background-color:#8ED4AB;
+    background-color:#00E8B4;
   }
   .day:hover .s-tooltip{
     display: block;

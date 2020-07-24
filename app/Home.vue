@@ -108,15 +108,15 @@ export default {
     data () {
         return {
             products: [
-                'RPC',
-                'DAPP',
-                'TOMODEX',
-                'TOMOSCAN',
-                'TOMOBRIDGE',
-                'TOMOWALLET',
-                'TOMOCHAIN',
-                'TOMOMASTER',
-                'TOMODOCS'
+                'TomoChain Public RPC',
+                'TomoRelayer',
+                'TomoDEX',
+                'TomoScan',
+                'TomoBridge',
+                'TomoWallet',
+                'TomoChain Website',
+                'TomoMaster',
+                'TomoChain Document Site'
             ],
             days: [],
             today: []

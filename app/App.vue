@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-md-6">
                             <h2 class="text-light tm-font-size-6">
-                                Tomochain Systems
+                                TomoChain Systems
                                 <br>
                                 <span class="text-blue">Status</span> Overall
                             </h2>
@@ -152,15 +152,15 @@ export default {
             currentStatus: '',
             currentLabel: '',
             products: [
-                'RPC',
-                'DAPP',
-                'TOMODEX',
-                'TOMOSCAN',
-                'TOMOBRIDGE',
-                'TOMOWALLET',
-                'TOMOCHAIN',
-                'TOMOMASTER',
-                'TOMODOCS'
+                'TomoChain Public RPC',
+                'TomoRelayer',
+                'TomoDEX',
+                'TomoScan',
+                'TomoBridge',
+                'TOmoWallet',
+                'TomoChain Website',
+                'TomoMaster',
+                'TomoChain Document Site'
             ]
         }
     },

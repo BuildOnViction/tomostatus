@@ -13,7 +13,7 @@ router.get('/', async function (req, res, next) {
         const q = {
             q: `
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'RPC' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'DAPP' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMORELAYER' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODEX' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOSCAN' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOBRIDGE' AND "status" = 'failed') AND time >= now() - 89d GROUP BY time(1d) fill(0);
@@ -48,7 +48,7 @@ router.get('/today', async function (req, res, next) {
         const q = {
             q: `
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'RPC' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'DAPP' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMORELAYER' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODEX' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOSCAN' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOBRIDGE' AND "status" = 'failed') AND time >= now() - 1d GROUP BY time(1d) fill(0);
@@ -83,7 +83,7 @@ router.get('/currentStatus', async function (req, res, next) {
         const q = {
             q: `
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'RPC' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);
-            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'DAPP' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);
+            SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMORELAYER' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMODEX' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOSCAN' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);
             SELECT sum("value") FROM "statuses" WHERE ("env" = 'MAINNET' AND "product" = 'TOMOBRIDGE' AND "status" = 'failed') AND time >= now() - 30m GROUP BY time(1d) fill(0);

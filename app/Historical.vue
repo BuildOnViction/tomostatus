@@ -12,7 +12,7 @@
                     <span
                         class="selected"
                     >
-                        {{ selected }}
+                        {{ selected.name }}
                     </span>
                     <span class="caret" />
                 </button>
@@ -20,11 +20,12 @@
                     <li
                         v-for="(product, rowIndex) in products"
                         :key="rowIndex"
-                        :data-value="product"
-                        :class="product == selected ? 'active' : ''"
+                        :data-value="product.key"
+                        :data-name="product.name"
+                        :class="product.key == selected.key ? 'active' : ''"
                         @click="getCurrentSys"
                     >
-                        {{ product }}
+                        {{ product.name }}
                     </li>
                 </ul>
             </div>
@@ -161,15 +162,15 @@ export default {
     data () {
         return {
             products: [
-                'RPC',
-                'DAPP',
-                'TOMODEX',
-                'TOMOSCAN',
-                'TOMOBRIDGE',
-                'TOMOWALLET',
-                'TOMOCHAIN',
-                'TOMOMASTER',
-                'TOMODOCS'
+                { name: 'TomoChain Public RPC', key:'RPC' },
+                { name: 'TomoDEX', key: 'TOMODEX' },
+                { name: 'TomoScan', key: 'TOMOSCAN' },
+                { name: 'TomoBridge', key: 'TOMOBRIDGE' },
+                { name: 'TomoWallet', key: 'TOMOWALLET' },
+                { name: 'TomoChain Website', key: 'TOMOCHAIN' },
+                { name: 'TomoMaster', key: 'TOMOMASTER' },
+                { name: 'TomoChain Document Site', key: 'TOMODOCS' },
+                { name: 'TomoRelayer', key: 'TOMORELAYER' }
             ],
             months: [
                 'January',
@@ -185,7 +186,7 @@ export default {
                 'November',
                 'December'
             ],
-            selected: 'RPC',
+            selected: { name: 'TomoChain Public RPC', key: 'RPC' },
             showDropdown: false,
             values: [], // data render the Calendar
             Month: new Date().getMonth() + 1,
@@ -266,7 +267,7 @@ export default {
                 const params = {
                     month: this.Month, // 7
                     year: this.Year,
-                    selected: this.selected
+                    selected: this.selected.key
                 }
                 const query = this.serializeQuery(params)
                 const { data } = await axios.get(`/api/status/historical?${query}`)
@@ -370,8 +371,10 @@ export default {
             return (new Date(year, month)).getDay()
         },
         async getCurrentSys (event) {
-            const attr = event.target.getAttribute('data-value')
-            this.selected = attr
+            const v = event.target.getAttribute('data-value')
+            const n = event.target.getAttribute('data-name')
+
+            this.selected = { name: n, key: v }
             this.showDropdown = !this.showDropdown
             await this.getData()
         },

@@ -40,6 +40,7 @@
 
 .tm-font-size-6 {
   font-size: 60px;
+  white-space: nowrap;
   @media screen and (max-width: 1024px) {
     font-size: 36px;
   }

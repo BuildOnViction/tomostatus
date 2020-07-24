@@ -14,24 +14,24 @@
 }
 
 .text-blue {
-  color: #00E8B4;
+  color: $color-primary;
 }
 
 .tm-btn-link {
   padding: 16px 50px;
   min-width: 200px;
   display: inline-block;
-  background-color: #00E8B4;
+  background-color: $color-primary;
   color: #242828!important;
   text-decoration: none!important;
   &.stop {
-    background-color: #E02020;
+    background-color: $color-red;
   }
   &.pending {
-    background-color: #F7B500;
+    background-color: $color-pending;
   }
   &.normal {
-    background-color: #00E8B4;
+    background-color: $color-primary;
   }
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -76,7 +76,7 @@ img {
     margin-left: -2px;
     margin-right: -2px;
     li {
-      background-color: #00E8B4;
+      background-color: $color-primary;
       width: calc(100%/90);
       height: 50px;
       margin: 0 2px;
@@ -86,13 +86,13 @@ img {
         margin: 0 1px;
       }
       &.stop {
-        background-color: #E02020;
+        background-color: $color-red;
       }
       &.pending {
-        background-color: #F7B500;
+        background-color: $color-pending;
       }
       &.normal {
-        background-color: #00E8B4;
+        background-color: $color-primary;
       }
       .inner-calendar{
         display: none;
@@ -157,13 +157,13 @@ img {
 }
 .tm-item-box {
   .stop {
-    color: #E02020;
+    color: $color-red;
   }
   .pending {
-    color: #F7B500;
+    color: $color-pending;
   }
   .normal {
-    color: #00E8B4;
+    color: $color-primary;
   }
 }
 
@@ -231,7 +231,7 @@ img {
   }
   ul{
     position: absolute;
-    width: 260px;
+    width: 300px;
     list-style: none;
     padding: 0;
     background-color: #fff;
@@ -240,8 +240,8 @@ img {
     li{
       padding: 5px 10px;
       cursor: pointer;
-      &.active{
-        background-color: #8ED4AB;
+      &.active,&:hover{
+        background-color: $color-primary;
         color: #fff;
       }
     }
@@ -288,13 +288,13 @@ img {
     }
   }
   .stop{
-    background-color:#bd1212;
+    background-color:$color-red;
   }
   .pending{
-    background-color:#F7B500;
+    background-color:$color-pending;
   }
   .normal{
-    background-color:#8ED4AB;
+    background-color:$color-primary;
   }
   .day:hover .s-tooltip{
     display: block;

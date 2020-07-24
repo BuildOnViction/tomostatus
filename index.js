@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express')
 const config = require('config')
 const bodyParser = require('body-parser')
@@ -9,7 +10,6 @@ const morgan = require('morgan')
 const logger = require('./helpers/logger')
 const helmet = require('helmet')
 const cors = require('cors')
-
 // body parse
 const app = express()
 
@@ -29,6 +29,8 @@ const server = require('http').Server(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+app.use('/build', express.static('build'))
+app.use('/app/assets', express.static('app/assets'))
 const docs = yaml.safeLoad(fs.readFileSync('./docs/swagger.yml', 'utf8'))
 app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(docs))
 

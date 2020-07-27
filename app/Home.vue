@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-md-6">
                     <p class="text-md-right">
-                        Uptime over the past 90 days. <a
+                        Uptime over the past {{ dayNumbers }} days. <a
                             href="/historical"
                             rel="noopener noreferrer"
                         >View historical uptime</a>.
@@ -76,7 +76,7 @@
                 </div>
                 <div class="row text-black-50">
                     <div class="col-8">
-                        90 days ago
+                        {{ dayNumbers }} days ago
                     </div>
                     <div class="col-4 text-right">
                         Today
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class=" mt-5">
-            <h2>TomoChain Social Media Feeds</h2>
+            <h2>TomoChain Status Social Media Feeds</h2>
             <div class="tm-twtter-box">
                 <Timeline
                     id="TomoChainStatus"
@@ -120,14 +120,25 @@ export default {
                 'TomoBridge',
                 'TomoWallet'
             ],
+            status: [],
             days: [],
-            today: []
+            today: [],
+            screenSize: window.innerWidth,
+            dayNumbers: 90
         }
     },
     computed: { },
     async updated () { },
     destroyed () { },
+    watch: {
+        screenSize: async function (newValue) {
+            await this.responsiveData(newValue)
+        }
+    },
     created: async function () {
+        window.onresize = () => {
+            this.screenSize = window.innerWidth
+        }
         await this.getCurrentStatus()
         await this.getData()
     },
@@ -157,7 +168,9 @@ export default {
                         })
                     }
                 }))
+                this.status = items
                 this.days = items
+                await this.responsiveData(this.screenSize)
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })
@@ -246,6 +259,31 @@ export default {
                 return 100
             } else {
                 return Math.floor((current * 100) / total)
+            }
+        },
+        async sliceData (sliceNumber = 0) {
+            const clone = JSON.parse(JSON.stringify(this.status))
+            const a = await Promise.all(clone.map(c => {
+                c.items = c.items.slice(Math.max(c.items.length - sliceNumber, 0))
+                return c
+            }))
+            return a
+        },
+        async responsiveData (screenValue) {
+            if (screenValue <= 600) {
+                this.dayNumbers = 30
+                if (this.days[0].items.length > 30) {
+                    this.days = await this.sliceData(30)
+                }
+            } else if (screenValue <= 1024) {
+                this.dayNumbers = 60
+                if (this.days[0].items.length === 30 ||
+                    this.days[0].items.length > 60) {
+                    this.days = await this.sliceData(60)
+                }
+            } else if (screenValue > 1024) {
+                this.dayNumbers = 90
+                this.days = this.status
             }
         }
     }

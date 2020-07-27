@@ -138,7 +138,7 @@
             </router-link>
         </div>
         <div class="mt-5">
-            <h2>TomoChain Social Media Feeds</h2>
+            <h2>TomoChain Status Social Media Feeds</h2>
             <div class="tm-twtter-box">
                 <Timeline
                     id="TomoChainStatus"

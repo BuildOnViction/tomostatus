@@ -54,8 +54,10 @@
                                             <div class="col-6">
                                                 Degradation
                                             </div>
-                                            <div class="col-6 text-right">
-                                                {{ item[1] }}
+                                            <div
+                                                class="col-6 text-right"
+                                                :alt="item[1]">
+                                                {{ calculatePercentage(item[1]) }}%
                                             </div>
                                         </div>
                                         <div class="tm-txt py-2">
@@ -109,14 +111,14 @@ export default {
         return {
             products: [
                 'TomoChain Public RPC',
+                'TomoChain Document Site',
+                'TomoChain Website',
+                'TomoMaster',
                 'TomoRelayer',
                 'TomoDEX',
                 'TomoScan',
                 'TomoBridge',
-                'TomoWallet',
-                'TomoChain Website',
-                'TomoMaster',
-                'TomoChain Document Site'
+                'TomoWallet'
             ],
             days: [],
             today: []
@@ -139,11 +141,13 @@ export default {
                         productId: d.statement_id,
                         items: d.series[0].values.map(v => {
                             let color = 'normal' // no error
-                            if (v[1] >= 48) {
-                                color = 'stop' // > 12 hours
-                            }
+
                             if (v[1] >= 1) {
                                 color = 'pending' // 0 - 12 hours
+                            }
+
+                            if (v[1] >= 48) {
+                                color = 'stop' // > 12 hours
                             }
                             return [
                                 moment(v[0]).format('DD MMMM YYYY'),
@@ -174,13 +178,14 @@ export default {
                             let color = 'normal' // no error
                             if (new Date(v[0]).getDate() === new Date().getDate()) {
                                 let status = 'Normal'
-                                if (v[1] >= 48) {
-                                    color = 'stop' // > 12 hours
-                                    status = 'Incident'
-                                }
+
                                 if (v[1] >= 1) {
                                     color = 'pending' // 0 - 12 hours
                                     status = 'Degraded'
+                                }
+                                if (v[1] >= 48) {
+                                    color = 'stop' // > 12 hours
+                                    status = 'Incident'
                                 }
                                 items[index].color = color
                                 items[index].status = status
@@ -234,6 +239,13 @@ export default {
             } catch (error) {
                 console.log(error)
                 this.$toasted.show(error, { type: 'error' })
+            }
+        },
+        calculatePercentage (current, total = 96) {
+            if (current >= total) {
+                return 100
+            } else {
+                return Math.floor((current * 100) / total)
             }
         }
     }

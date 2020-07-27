@@ -92,12 +92,14 @@
                                 v-if="day.status > 0"
                                 class="s-wrap"
                             >
-                                <div class="s-time bg-gray">
+                                <div
+                                    class="s-time bg-gray"
+                                    :alt="day.status">
                                     <span class="s-title">
                                         Degradation
                                     </span>
                                     <div class="s-result">
-                                        {{ day.status }}
+                                        {{ calculatePercentage(day.status) }}%
                                     </div>
                                 </div>
                                 <div class="s-content">
@@ -163,14 +165,14 @@ export default {
         return {
             products: [
                 { name: 'TomoChain Public RPC', key:'RPC' },
+                { name: 'TomoChain Document Site', key: 'TOMODOCS' },
+                { name: 'TomoChain Website', key: 'TOMOCHAIN' },
+                { name: 'TomoMaster', key: 'TOMOMASTER' },
                 { name: 'TomoRelayer', key: 'TOMORELAYER' },
                 { name: 'TomoDEX', key: 'TOMODEX' },
                 { name: 'TomoScan', key: 'TOMOSCAN' },
                 { name: 'TomoBridge', key: 'TOMOBRIDGE' },
-                { name: 'TomoWallet', key: 'TOMOWALLET' },
-                { name: 'TomoChain Website', key: 'TOMOCHAIN' },
-                { name: 'TomoMaster', key: 'TOMOMASTER' },
-                { name: 'TomoChain Document Site', key: 'TOMODOCS' }
+                { name: 'TomoWallet', key: 'TOMOWALLET' }
             ],
             months: [
                 'January',
@@ -289,11 +291,11 @@ export default {
                             if (m === this.Month) {
                                 let colorClass3 = 'normal' // no error
                                 let activeDay = 'active'
-                                if (s[1] >= 48) {
-                                    colorClass3 = 'stop' // > 12 hours
-                                }
                                 if (s[1] >= 1) {
                                     colorClass3 = 'pending' // 0 - 12 hours
+                                }
+                                if (s[1] >= 48) {
+                                    colorClass3 = 'stop' // > 12 hours
                                 }
                                 if (s[0] > today.getTime()) {
                                     activeDay = 'f-day'
@@ -311,11 +313,11 @@ export default {
                             } else if (m === this.Month - 1) {
                                 let colorClass2 = 'normal' // no error
                                 let activeDay = 'active'
-                                if (s[1] >= 48) {
-                                    colorClass2 = 'stop' // > 12 hours
-                                }
                                 if (s[1] >= 1) {
                                     colorClass2 = 'pending' // 0 - 12 hours
+                                }
+                                if (s[1] >= 48) {
+                                    colorClass2 = 'stop' // > 12 hours
                                 }
                                 if (s[0] > today.getTime()) {
                                     activeDay = 'f-day'
@@ -333,11 +335,11 @@ export default {
                             } else if (m === this.Month - 2) {
                                 let colorClass = 'normal' // no error
                                 let activeDay = 'active'
-                                if (s[1] >= 48) {
-                                    colorClass = 'stop' // > 12 hours
-                                }
                                 if (s[1] >= 1) {
                                     colorClass = 'pending' // 0 - 12 hours
+                                }
+                                if (s[1] >= 48) {
+                                    colorClass = 'stop' // > 12 hours
                                 }
                                 if (s[0] > today.getTime()) {
                                     activeDay = 'f-day'
@@ -392,6 +394,13 @@ export default {
             this.Month = month
             this.Year = year
             await this.getData()
+        },
+        calculatePercentage (current, total = 96) {
+            if (current >= total) {
+                return 100
+            } else {
+                return Math.floor((current * 100) / total)
+            }
         }
     }
 }

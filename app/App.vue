@@ -153,14 +153,14 @@ export default {
             currentLabel: '',
             products: [
                 'TomoChain Public RPC',
+                'TomoChain Document Site',
+                'TomoChain Website',
+                'TomoMaster',
                 'TomoRelayer',
                 'TomoDEX',
                 'TomoScan',
                 'TomoBridge',
-                'TOmoWallet',
-                'TomoChain Website',
-                'TomoMaster',
-                'TomoChain Document Site'
+                'TOmoWallet'
             ]
         }
     },

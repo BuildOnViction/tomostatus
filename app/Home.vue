@@ -17,20 +17,20 @@
         </div>
         <div v-if="days.length">
             <div
-                v-for="(productName, rowIndex) in products"
+                v-for="(product, rowIndex) in products"
                 :key="rowIndex"
                 class="tm-item-box my-3"
             >
                 <div class="row">
                     <div class="col-8">
-                        {{ productName }}
+                        {{ product.name }}
 
-                        <!-- <b-icon
+                        <b-icon
                             v-b-tooltip.hover
                             icon="question-circle"
                             font-scale="1"
-                            title="Web requets for Tomochain.com UI & service"
-                        /> -->
+                            :title="product.description"
+                        />
                     </div>
                     <div :class="`col-4 text-right ${today[rowIndex].color || ''}`">
                         {{ today[rowIndex].status }}
@@ -110,15 +110,42 @@ export default {
     data () {
         return {
             products: [
-                'TomoChain Public RPC',
-                'TomoChain Document Site',
-                'TomoChain Website',
-                'TomoMaster',
-                'TomoRelayer',
-                'TomoDEX',
-                'TomoScan',
-                'TomoBridge',
-                'TomoWallet'
+                {
+                    name: 'TomoChain Public RPC',
+                    description: 'Performance of TomoChain RPC'
+                },
+                {
+                    name: 'TomoChain Document Site',
+                    description: 'Performance of Tomochain document website'
+                },
+                {
+                    name: 'TomoChain Website',
+                    description: 'Performance of Tomochain website'
+                },
+                {
+                    name: 'TomoMaster',
+                    description: 'Performance of TomoMaster'
+                },
+                {
+                    name: 'TomoRelayer',
+                    description: 'Performance of TomoRelayer'
+                },
+                {
+                    name: 'TomoDEX',
+                    description: 'Performance of TomoDEX'
+                },
+                {
+                    name: 'TomoScan',
+                    description: 'Performance of TomoScan'
+                },
+                {
+                    name: 'TomoBridge',
+                    description: 'Performance of TomoBridge'
+                },
+                {
+                    name: 'TomoWallet',
+                    description: 'Performance of TomoWallet'
+                }
             ],
             status: [],
             days: [],

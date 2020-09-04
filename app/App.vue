@@ -160,7 +160,7 @@ export default {
                 'TomoDEX',
                 'TomoScan',
                 'TomoBridge',
-                'TOmoWallet'
+                'TomoWallet'
             ]
         }
     },

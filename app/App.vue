@@ -156,7 +156,7 @@ export default {
                 'TomoChain Document Site',
                 'TomoChain Website',
                 'TomoMaster',
-                'TomoRelayer',
+                // 'TomoRelayer',
                 'TomoDEX',
                 'TomoScan',
                 'TomoBridge',

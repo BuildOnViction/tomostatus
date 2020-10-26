@@ -168,7 +168,7 @@ export default {
                 { name: 'TomoChain Document Site', key: 'TOMODOCS' },
                 { name: 'TomoChain Website', key: 'TOMOCHAIN' },
                 { name: 'TomoMaster', key: 'TOMOMASTER' },
-                { name: 'TomoRelayer', key: 'TOMORELAYER' },
+                // { name: 'TomoRelayer', key: 'TOMORELAYER' },
                 { name: 'TomoDEX', key: 'TOMODEX' },
                 { name: 'TomoScan', key: 'TOMOSCAN' },
                 { name: 'TomoBridge', key: 'TOMOBRIDGE' },

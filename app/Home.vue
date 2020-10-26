@@ -126,10 +126,10 @@ export default {
                     name: 'TomoMaster',
                     description: 'Performance of TomoMaster'
                 },
-                {
-                    name: 'TomoRelayer',
-                    description: 'Performance of TomoRelayer'
-                },
+                // {
+                //     name: 'TomoRelayer',
+                //     description: 'Performance of TomoRelayer'
+                // },
                 {
                     name: 'TomoDEX',
                     description: 'Performance of TomoDEX'

@@ -114,10 +114,10 @@ export default {
                     name: 'TomoChain Public RPC',
                     description: 'Performance of TomoChain RPC'
                 },
-                {
-                    name: 'TomoChain Document Site',
-                    description: 'Performance of Tomochain document website'
-                },
+                // {
+                //     name: 'TomoChain Document Site',
+                //     description: 'Performance of Tomochain document website'
+                // },
                 {
                     name: 'TomoChain Website',
                     description: 'Performance of Tomochain website'
@@ -226,45 +226,6 @@ export default {
                                 if (v[1] >= 48) {
                                     color = 'stop' // > 12 hours
                                     status = 'Incident'
-                                }
-                                items[index].color = color
-                                items[index].status = status
-                            }
-                        })
-                    } else {
-                        items[index].status = 'Normal'
-                        items[index].color = 'normal'
-                    }
-                }))
-                this.today = items
-            } catch (error) {
-                console.log(error)
-                this.$toasted.show(error, { type: 'error' })
-            }
-        },
-        async getTodayData () {
-            try {
-                const { data } = await axios.get('/api/status/today')
-                const items = []
-                await Promise.all(data.results.map((d, index) => {
-                    console.log(d)
-                    items[index] = {
-                        productId: d.statement_id,
-                        status: '',
-                        color: ''
-                    }
-                    if (d.series && d.series.length > 0) {
-                        d.series[0].values.map(v => {
-                            let color = 'normal' // no error
-                            if (new Date(v[0]).getDate() === new Date().getDate()) {
-                                let status = 'Normal'
-                                if (v[1] >= 48) {
-                                    color = 'stop' // > 12 hours
-                                    status = 'Incident'
-                                }
-                                if (v[1] >= 1) {
-                                    color = 'pending' // 0 - 12 hours
-                                    status = 'Degraded'
                                 }
                                 items[index].color = color
                                 items[index].status = status

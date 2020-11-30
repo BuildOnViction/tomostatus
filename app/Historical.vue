@@ -165,7 +165,7 @@ export default {
         return {
             products: [
                 { name: 'TomoChain Public RPC', key:'RPC' },
-                { name: 'TomoChain Document Site', key: 'TOMODOCS' },
+                // { name: 'TomoChain Document Site', key: 'TOMODOCS' },
                 { name: 'TomoChain Website', key: 'TOMOCHAIN' },
                 { name: 'TomoMaster', key: 'TOMOMASTER' },
                 // { name: 'TomoRelayer', key: 'TOMORELAYER' },

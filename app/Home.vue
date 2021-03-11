@@ -56,7 +56,8 @@
                                             </div>
                                             <div
                                                 class="col-6 text-right"
-                                                :alt="item[1]">
+                                                :alt="item[1]"
+                                            >
                                                 {{ calculatePercentage(item[1]) }}%
                                             </div>
                                         </div>
@@ -155,13 +156,14 @@ export default {
         }
     },
     computed: { },
-    async updated () { },
-    destroyed () { },
     watch: {
         screenSize: async function (newValue) {
             await this.responsiveData(newValue)
         }
     },
+    async updated () {
+    },
+    destroyed () { },
     created: async function () {
         window.onresize = () => {
             this.screenSize = window.innerWidth
@@ -177,7 +179,10 @@ export default {
                 await Promise.all(data.results.map((d, index) => {
                     items[index] = {
                         productId: d.statement_id,
-                        items: d.series[0].values.map(v => {
+                        items: []
+                    }
+                    if (d.series && d.series[0] && d.series[0].values) {
+                        items[index].items = d.series[0].values.map(v => {
                             let color = 'normal' // no error
 
                             if (v[1] >= 1) {
@@ -195,8 +200,29 @@ export default {
                         })
                     }
                 }))
-                this.status = items
-                this.days = items
+                const noErrorRecords = []
+                for (let i = 0; i < this.dayNumbers; i++) {
+                    noErrorRecords.push([
+                        moment().subtract(i, 'days').format('DD MMMM YYYY'),
+                        0,
+                        'normal'
+                    ])
+                }
+
+                const doubleCheckItems = await items.map(i => {
+                    if (i.items.length === 0) {
+                        i.items = noErrorRecords.reverse()
+                        // const firstMath = items.find(it => it.items.length > 0)
+                        // i.items = firstMath.items.map(b => ([
+                        //     b[0],
+                        //     0,
+                        //     'normal'
+                        // ]))
+                    }
+                    return i
+                })
+                this.status = doubleCheckItems
+                this.days = doubleCheckItems
                 await this.responsiveData(this.screenSize)
             } catch (error) {
                 console.log(error)

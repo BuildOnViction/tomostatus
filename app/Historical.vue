@@ -94,7 +94,8 @@
                             >
                                 <div
                                     class="s-time bg-gray"
-                                    :alt="day.status">
+                                    :alt="day.status"
+                                >
                                     <span class="s-title">
                                         Degradation
                                     </span>
